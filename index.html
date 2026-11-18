@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El Gran Sorteo del Debate</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="confetti"></canvas>
+  <div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <header class="topbar">
+    <div class="brand">⚖️ <span>Gran Sorteo del Debate</span></div>
+    <nav class="stepper" id="stepper" aria-label="Actos">
+      <button data-act="act1"><b>I</b><span>Moción</span></button>
+      <button data-act="act2"><b>II</b><span>Parejas</span></button>
+      <button data-act="act3"><b>III</b><span>Jueces</span></button>
+      <button data-act="final"><b>IV</b><span>Cartelera</span></button>
+    </nav>
+    <div class="tools">
+      <button id="btnSound" title="Sonido" aria-label="Sonido">🔊</button>
+      <button id="btnFast" title="Modo rápido (animaciones más cortas)" aria-label="Modo rápido">⏩</button>
+      <button id="btnReset" title="Reiniciar todo" aria-label="Reiniciar todo">↺</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- INTRO -->
+    <section id="intro" class="screen active">
+      <p class="kicker" id="introSub"></p>
+      <h1 class="mega">El Gran<br><em>Sorteo</em><br>del Debate</h1>
+      <p class="lead">Una moción, cuatro bancadas y un trío de jueces.<br>Primero sabremos <b>de qué</b> se debate, luego <b>quiénes</b> lo harán y al final <b>quién los juzgará</b>.</p>
+      <div class="stats" id="introStats"></div>
+      <button class="big-btn primary" id="btnStart">¡Comenzar el sorteo!</button>
+      <p class="hint">Tip: usa la barra espaciadora o Enter para avanzar</p>
+    </section>
+
+    <!-- ACTO I -->
+    <section id="act1" class="screen">
+      <div class="act-head">
+        <span class="act-kicker">Acto I</span>
+        <h2>La Moción</h2>
+        <p>Estas son las candidatas. Solo una será la moción del debate.</p>
+      </div>
+      <div class="wall" id="wall"></div>
+      <div class="dock"><button class="big-btn primary" id="btnMotion">Sortear moción</button></div>
+    </section>
+
+    <!-- ACTO II -->
+    <section id="act2" class="screen">
+      <div class="act-head">
+        <span class="act-kicker">Acto II</span>
+        <h2>Las Parejas</h2>
+        <p>Ocho parejas, cuatro bancadas. Cada pareja elegida viaja a su lugar.</p>
+      </div>
+      <div class="benches-row" id="benchBoard"></div>
+      <div class="pool-title" id="poolTitle"></div>
+      <div class="pairs" id="pairPool"></div>
+      <div class="dock"><button class="big-btn primary" id="btnPair">Sortear pareja</button></div>
+    </section>
+
+    <!-- ACTO III -->
+    <section id="act3" class="screen">
+      <div class="act-head">
+        <span class="act-kicker">Acto III</span>
+        <h2>Los Jueces</h2>
+        <p>Seis jurados, tres lugares. Cada elegido se une al panel.</p>
+      </div>
+      <div class="benches-row three" id="seatBoard"></div>
+      <div class="pool-title" id="judgeTitle"></div>
+      <div class="pairs" id="judgePool"></div>
+      <div class="dock"><button class="big-btn primary" id="btnJudge">Sortear juez</button></div>
+    </section>
+
+    <!-- CARTELERA FINAL -->
+    <section id="final" class="screen">
+      <div class="act-head">
+        <span class="act-kicker">Acto IV</span>
+        <h2>¡Está todo dicho!</h2>
+        <p>Esta es la cartelera oficial. Que gane la mejor argumentación.</p>
+      </div>
+      <div id="finalBoard"></div>
+      <div class="controls">
+        <button class="big-btn ghost" id="btnPrint">🖨️ Imprimir</button>
+        <button class="big-btn ghost" id="btnCopy">📋 Copiar texto</button>
+        <button class="big-btn ghost" id="btnRedo">↺ Sortear todo de nuevo</button>
+      </div>
+      <p class="hint" id="copyMsg"></p>
+    </section>
+  </main>
+
+  <!-- Cuenta regresiva -->
+  <div class="overlay cd" id="countdown" hidden>
+    <div class="cd-label"></div>
+    <div class="cd-num">3</div>
+  </div>
+
+  <!-- Revelación de moción -->
+  <div class="overlay" id="reveal" hidden>
+    <div class="rv-box">
+      <div class="rv-kicker">LA MOCIÓN DEL DEBATE ES…</div>
+      <div class="rv-seal" id="rvSeal">?</div>
+      <div class="rv-cat" id="rvCat" hidden><span class="emo"></span><span class="catname"></span></div>
+      <div class="rv-tipo" id="rvTipo" hidden></div>
+      <div class="rv-text" id="rvText" hidden></div>
+      <div class="rv-ctx" id="rvCtx" hidden></div>
+      <button class="big-btn" id="rvOk" hidden>¡Entendido!</button>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
