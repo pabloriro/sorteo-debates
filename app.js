@@ -38,13 +38,14 @@
     return String(h);
   })();
   const KEY = 'sorteoDebate_v3';
-  const fresh = () => ({ sig: SIG, act: 'intro', mocion: null, slots: Array(BANCADAS.length).fill(null), jueces: Array(J_SLOTS).fill(null) });
+  const fresh = () => ({ sig: SIG, act: 'intro', mocion: null, slots: Array(BANCADAS.length).fill(null), jueces: Array.from({ length: J_SLOTS }, (_, i) => i) });
   const load = () => {
     try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.sig === SIG) return s; } catch (e) { /* sin almacenamiento */ }
     return fresh();
   };
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* nada */ } };
   let S = load();
+  S.jueces = Array.from({ length: J_SLOTS }, (_, i) => i); // jueces fijos: sin sorteo
 
   const status = () => ({
     act1: S.mocion !== null,
@@ -401,12 +402,8 @@
     $('#seatBoard').innerHTML = S.jueces.map((_, k) => seatHTML(k)).join('');
     lastSeat = null;
     const full = S.jueces.every(x => x !== null);
-    $('#judgePool').innerHTML = JURADOS.map((j, i) => {
-      const taken = S.jueces.includes(i);
-      return `<div class="pchip ${taken ? 'gone' : ''} ${full && !taken ? 'out' : ''}" data-out="No participa" data-i="${i}"><small>Jurado</small>${esc(j)}</div>`;
-    }).join('');
-    const left = JURADOS.length - S.jueces.filter(x => x !== null).length;
-    $('#judgeTitle').textContent = full ? 'El panel de jueces está completo' : `En la tómbola: ${left} jurados`;
+    $('#judgePool').innerHTML = '';
+    $('#judgeTitle').textContent = 'El panel de jueces';
     const nx = S.jueces.indexOf(null), btn = $('#btnJudge');
     btn.textContent = nx === -1 ? 'Ver la cartelera final →' : `Sortear · ${seatLabel(nx)}`;
     btn.disabled = busy;
