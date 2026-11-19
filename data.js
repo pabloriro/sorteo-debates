@@ -12,21 +12,14 @@ const CONFIG = {
 const PAREJAS = [
   ["Felipe Vasquez", "Mathias Orihuela"],
   ["Alexander Carnatron", "Sebastian Ramirez"],
-  ["Jesus Panaspaico", "Luis Hernandez"],
-  ["Valeria Berroteran", "Simon Perez"],
-  ["Luis Cifuentes", "Agustin Iceta"],
   ["Angelica de Avila", "Joaquin Valduvinos"],
   ["Thiago Quiroz", "Juan Briones"],
-  ["Sofia Reyes", "Mateo Tolentino"],
 ];
 
 /* Jurados (lista "Jurados" del Word). Se sortean 3 para formar el trío del debate. */
 const JURADOS = [
   "Pablo Guerrero",
-  "Katherine Flores",
-  "Shara Samiernto",
   "Josefina Acevedo",
-  "Isabel Gil",
   "Valeria Muñoz",
 ];
 const JUECES_POR_DEBATE = 3;
@@ -85,9 +78,6 @@ const MOCIONES = [
   { emoji: "🎆", cat: "Medio ambiente", tipo: "Moción de política",
     t: "Esta Cámara prohibiría los fuegos artificiales en Año Nuevo.",
     ctx: "Tradición y celebración frente a mascotas, fauna y contaminación." },
-  { emoji: "🦁", cat: "Ética animal", tipo: "Moción de política",
-    t: "Esta Cámara prohibiría los zoológicos.",
-    ctx: "Conservación y educación versus los derechos de los animales." },
   { emoji: "🍟", cat: "Salud", tipo: "Moción de política",
     t: "Esta Cámara prohibiría la venta de comida chatarra en los alrededores de los colegios.",
     ctx: "Salud pública, kioscos y pequeños negocios del barrio." },
